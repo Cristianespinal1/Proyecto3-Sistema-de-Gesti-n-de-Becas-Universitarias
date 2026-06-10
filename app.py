@@ -20,6 +20,21 @@ app.config['MYSQL_DB'] = "gestionbecas_db"
 @app.route('/')
 def inicio():
     return render_template("index.html") 
+@app.route('/becas_html')
+def becas_html():
+    return render_template("becas.html") 
+@app.route('/consultas_html')
+def consultas_html():
+    return render_template("consultas.html") 
+@app.route('/documentos_html')
+def documentos_html():
+    return render_template("documentos.html") 
+@app.route('/estudiantes_html')
+def estudiantes_html():
+    return render_template("estudiantes.html") 
+@app.route('/postulaciones_html')
+def postulaciones_html():
+    return render_template("postulaciones.html") 
 
 #---------------------------------login---------------------
 @app.route('/login', methods=['POST'])

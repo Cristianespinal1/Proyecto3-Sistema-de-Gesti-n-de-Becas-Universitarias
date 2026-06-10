@@ -1,0 +1,38 @@
+
+/* Contenedor principal del Login (Azul oscuro profundo) */
+.login-card-dark {
+    background-color: rgba(15, 15, 44, 0.962) !important; /* El color azul oscuro exacto de tu imagen */
+    border-radius: 20px !important;       /* Bordes muy redondeados */
+    border: solid 2px black !important;
+    padding: 10px;
+}
+
+/* Inputs transparentes sin bordes feos de Bootstrap */
+.custom-input {
+    border: none !important;
+    box-shadow: none !important;
+}
+.custom-input::placeholder {
+    color: rgba(255, 255, 255, 0.4) !important;
+}
+
+/* Línea fucsia del Username */
+.border-fucsia-line {
+    border-bottom: 2px solid black !important;
+}
+
+/* Caja completamente fucsia del Password */
+.input-password-box {
+    background-color: #118de7 !important;
+    border-radius: 8px;
+}
+
+/* Checkbox personalizado */
+.btn-fucsia-main {
+    background-color: #0d0e14 !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-size: 1.1rem;
+    transition: background-color 0.2s ease;
+}
