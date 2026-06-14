@@ -170,20 +170,19 @@ def insertar_documendos():
 @jwt_required()
 def insertar_estudiante():
     data = request.get_json()
-    id_estudiante=data["id_estudiante"]
-    nombres= data["nombres"]
+    id_estudiante = data["id_estudiante"]
+    nombres = data["nombres"]
     apellidos = data["apellidos"]
-    carrera= data["carrera"]
-    promedio_acumulado=data["promedio_acumulado"]
-    
-    #insertar en la tabla categoria
+    carrera = data["carrera"]
+    promedio_acumulado = data["promedio_acumulado"]
+
     cursor = mysql.connection.cursor()
-    sql = """INSERT INTO estudiantes (id_estudiante ,nombres, apellidos, carrera ,promedio_acumulado )
-            VALUES(%s,%s,%s,%s,%s)"""
-    cursor.execute(sql, (id_estudiante,nombres,apellidos,carrera,promedio_acumulado,))
+    sql = """INSERT INTO estudiantes (id_estudiante,nombres, apellidos, carrera, promedio_acumulado)
+             VALUES(%s,%s, %s, %s, %s)"""
+    cursor.execute(sql, (id_estudiante,nombres, apellidos, carrera, promedio_acumulado))
     mysql.connection.commit()
     cursor.close()
-    return jsonify({"mensaje": "estudiante registrada con exito"}),201
+    return jsonify({"mensaje": "estudiante registrado con exito"}), 201
 
 @app.route('/postulaciones', methods=['POST'])
 @jwt_required()
@@ -397,6 +396,25 @@ def consulta_pendientes():
     cursor.close()
     return jsonify(resultado)
 #------------------------------CONSULTAS LOPEZ-----------------------------
+# CONSULTA PERSONALIZADA - estudiantes con promedio mayor a X
+@app.route('/estudiantes/promedio/<promedio>', methods=['GET'])
+def estudiantes_por_promedio(promedio):
+    promedio = float(promedio)
+    cursor = mysql.connection.cursor()
+    sql = "SELECT id_estudiante, nombres, apellidos, carrera, promedio_acumulado FROM estudiantes WHERE promedio_acumulado >= %s"
+    cursor.execute(sql, (promedio,))
+    datos = cursor.fetchall()
+    estudiantes = []
+    for fila in datos:
+        estudiantes.append({
+            "id_estudiante": fila[0],
+            "nombres": fila[1],
+            "apellidos": fila[2],
+            "carrera": fila[3],
+            "promedio_acumulado": float(fila[4])
+        })
+    cursor.close()
+    return jsonify(estudiantes)
 
 if __name__ == '__main__':
     app.run(debug=True)

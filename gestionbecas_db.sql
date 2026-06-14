@@ -86,6 +86,7 @@ INSERT INTO `documentos` (`id_documento`, `id_postulacion`, `tipo_documento`, `u
 -- Estructura de tabla para la tabla `estudiantes`
 --
 
+-- Tabla estudiantes (CAMBIADO: PRIMARY KEY dentro del CREATE)
 CREATE TABLE `estudiantes` (
   `id_estudiante` int(11) NOT NULL,
   `nombres` varchar(100) NOT NULL,
@@ -158,11 +159,7 @@ ALTER TABLE `documentos`
   ADD PRIMARY KEY (`id_documento`),
   ADD KEY `fk_documento_postulacion` (`id_postulacion`);
 
---
--- Indices de la tabla `estudiantes`
---
-ALTER TABLE `estudiantes`
-  ADD PRIMARY KEY (`id_estudiante`);
+
 
 --
 -- Indices de la tabla `postulaciones`
@@ -185,6 +182,11 @@ ALTER TABLE `becas`
 --
 -- AUTO_INCREMENT de la tabla `documentos`
 --
+
+ALTER TABLE `estudiantes`
+  ADD PRIMARY KEY (`id_estudiante`);
+
+  
 ALTER TABLE `documentos`
   MODIFY `id_documento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
