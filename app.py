@@ -170,15 +170,16 @@ def insertar_documendos():
 @jwt_required()
 def insertar_estudiante():
     data = request.get_json()
+    id_estudiante = data["id_estudiante"]
     nombres = data["nombres"]
     apellidos = data["apellidos"]
     carrera = data["carrera"]
     promedio_acumulado = data["promedio_acumulado"]
 
     cursor = mysql.connection.cursor()
-    sql = """INSERT INTO estudiantes (nombres, apellidos, carrera, promedio_acumulado)
-             VALUES(%s, %s, %s, %s)"""
-    cursor.execute(sql, (nombres, apellidos, carrera, promedio_acumulado))
+    sql = """INSERT INTO estudiantes (id_estudiante,nombres, apellidos, carrera, promedio_acumulado)
+             VALUES(%s,%s, %s, %s, %s)"""
+    cursor.execute(sql, (id_estudiante,nombres, apellidos, carrera, promedio_acumulado))
     mysql.connection.commit()
     cursor.close()
     return jsonify({"mensaje": "estudiante registrado con exito"}), 201

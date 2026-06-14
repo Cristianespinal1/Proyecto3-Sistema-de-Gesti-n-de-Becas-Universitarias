@@ -64,37 +64,32 @@
     <div class="container mt-4">
         <h2>Gestión de Estudiantes</h2>
 
-        <div class="card mb-4 p-3">
-            <h5 id="titulo-form">Agregar Estudiante</h5>
-            <input type="hidden" id="id_estudiante_editar">
-            <div class="row g-2">
-                <div class="col-md-3">
-                    <input type="text" id="nombres" class="form-control" placeholder="Nombres">
-                </div>
-                <div class="col-md-3">
-                    <input type="text" id="apellidos" class="form-control" placeholder="Apellidos">
-                </div>
-                <div class="col-md-3">
-                    <input type="text" id="carrera" class="form-control" placeholder="Carrera">
-                </div>
-                <div class="col-md-3">
-                    <input type="number" id="promedio_acumulado" class="form-control" placeholder="Promedio" step="0.01">
-                </div>
+       <div class="card mb-4 p-3">
+        <h5 id="titulo-form">Agregar Estudiante</h5>
+        <input type="hidden" id="id_estudiante_editar">
+        <div class="row g-2">
+            <div class="col-md-2">
+                <input type="number" id="id_estudiante" class="form-control" placeholder="ID Estudiante">
             </div>
-            <div class="mt-2">
-                <button class="btn btn-success" onclick="guardarEstudiante()">Guardar</button>
-                <button class="btn btn-secondary ms-2" onclick="limpiarFormulario()">Cancelar</button>
+            <div class="col-md-2">
+                <input type="text" id="nombres" class="form-control" placeholder="Nombres">
+            </div>
+            <div class="col-md-3">
+                <input type="text" id="apellidos" class="form-control" placeholder="Apellidos">
+            </div>
+            <div class="col-md-3">
+                <input type="text" id="carrera" class="form-control" placeholder="Carrera">
+            </div>
+            <div class="col-md-2">
+                <input type="number" id="promedio_acumulado" class="form-control" placeholder="Promedio" step="0.01">
             </div>
         </div>
-
-        <div class="card mb-4 p-3">
-            <h5>Buscar estudiantes con promedio mayor o igual a:</h5>
-            <div class="d-flex gap-2">
-                <input type="number" id="promedio_buscar" class="form-control w-25" placeholder="Ej: 70" step="0.01">
-                <button class="btn btn-info" onclick="buscarPorPromedio()">Buscar</button>
-                <button class="btn btn-secondary" onclick="cargarEstudiantes()">Ver todos</button>
-            </div>
+        <div class="mt-2">
+            <button class="btn btn-success" onclick="guardarEstudiante()">Guardar</button>
+            <button class="btn btn-secondary ms-2" onclick="limpiarFormulario()">Cancelar</button>
         </div>
+    </div>
+        
 
         <table class="table table-bordered table-striped">
             <thead class="table-dark">
@@ -161,22 +156,29 @@
                 return;
             }
 
-            var id = document.getElementById('id_estudiante_editar').value;
+            var id_editar = document.getElementById('id_estudiante_editar').value;
+            var id_nuevo = document.getElementById('id_estudiante').value;
             var nombres = document.getElementById('nombres').value;
             var apellidos = document.getElementById('apellidos').value;
             var carrera = document.getElementById('carrera').value;
             var promedio = parseFloat(document.getElementById('promedio_acumulado').value);
 
+             // VALIDACION DE PROMEDIO
+            if (promedio < 0 || promedio > 100) {
+                alert('El promedio debe estar entre 0 y 100');
+                return;
+            }
+            
             var datos = {
-              nombres: nombres,
-              apellidos: apellidos,
-              carrera: carrera,
-              promedio_acumulado: promedio
+                id_estudiante: parseInt(id_editar ? id_editar : id_nuevo),
+                nombres: nombres,
+                apellidos: apellidos,
+                carrera: carrera,
+                promedio_acumulado: promedio
             };
 
-            // Si tiene id es edicion, si no es nuevo
-            var url = id ? '/estudiantes/' + id : '/estudiantes';
-            var metodo = id ? 'PUT' : 'POST';
+            var url = id_editar ? '/estudiantes/' + id_editar : '/estudiantes';
+            var metodo = id_editar ? 'PUT' : 'POST';
 
             fetch(url, {
                 method: metodo,
@@ -195,7 +197,6 @@
                 cargarEstudiantes();
             });
         }
-
         // Llenar formulario para editar
         function editarEstudiante(id, nombres, apellidos, carrera, promedio) {
             document.getElementById('id_estudiante_editar').value = id;
@@ -233,26 +234,11 @@
             });
         }
 
-        // CONSULTA PERSONALIZADA - buscar por promedio
-        function buscarPorPromedio() {
-            var promedio = document.getElementById('promedio_buscar').value;
-            if (!promedio) {
-                alert('Ingresa un promedio');
-                return;
-            }
-
-            fetch('/estudiantes/promedio/' + promedio)
-            .then(function(respuesta) {
-                return respuesta.json();
-            })
-            .then(function(datos) {
-                mostrarEstudiantes(datos);
-            });
-        }
+        
 
         // Limpiar formulario
         function limpiarFormulario() {
-            document.getElementById('id_estudiante_editar').value = '';
+            document.getElementById('id_estudiante').value = '';
             document.getElementById('nombres').value = '';
             document.getElementById('apellidos').value = '';
             document.getElementById('carrera').value = '';

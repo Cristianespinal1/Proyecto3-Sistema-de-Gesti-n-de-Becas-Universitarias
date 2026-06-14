@@ -88,13 +88,12 @@ INSERT INTO `documentos` (`id_documento`, `id_postulacion`, `tipo_documento`, `u
 
 -- Tabla estudiantes (CAMBIADO: PRIMARY KEY dentro del CREATE)
 CREATE TABLE `estudiantes` (
-  `id_estudiante` int(11) NOT NULL AUTO_INCREMENT,
+  `id_estudiante` int(11) NOT NULL,
   `nombres` varchar(100) NOT NULL,
   `apellidos` varchar(100) NOT NULL,
   `carrera` varchar(100) NOT NULL,
-  `promedio_acumulado` decimal(5,2) NOT NULL,
-  PRIMARY KEY (`id_estudiante`)
-) ENGINE=InnoDB AUTO_INCREMENT=100213 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `promedio_acumulado` decimal(5,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `estudiantes`
@@ -183,6 +182,11 @@ ALTER TABLE `becas`
 --
 -- AUTO_INCREMENT de la tabla `documentos`
 --
+
+ALTER TABLE `estudiantes`
+  ADD PRIMARY KEY (`id_estudiante`);
+
+  
 ALTER TABLE `documentos`
   MODIFY `id_documento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
