@@ -5,92 +5,261 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ url_for('static', filename='estilos.css') }}">
-    <title>Document</title>
+    <title>Estudiantes</title>
 </head>
 <body>
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">
-      <img src="{{ url_for('static', filename='logo.png') }}" alt="Avatar Logo" style="width:60px;" class="rounded-pill">Gestion De Becas</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">Inicio</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/becas_html">becas</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/estudiantes_html">estudiantes</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/postulaciones_html">postulaciones</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/documentos_html">documentos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/consultas_html">consultas</a>
-        </li>
-      </ul>
-      
-      
-    </div>
-    <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-  Login
-</button>
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="{{ url_for('static', filename='logo.png') }}" alt="Avatar Logo" style="width:60px;" class="rounded-pill">Gestion De Becas
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link active" href="/">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/becas_html">Becas</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/estudiantes_html">Estudiantes</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/postulaciones_html">Postulaciones</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/documentos_html">Documentos</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/consultas_html">Consultas</a></li>
+                </ul>
+            </div>
 
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered"> <div class="modal-content login-card-dark">
-      
-      <div class="modal-header border-0 justify-content-center position-relative pt-4">
-        <h3 class="modal-title w-100 text-center text-white fw-bold" id="staticBackdropLabel">Login</h3>
-        <button type="button" class="btn-close btn-close-white position-absolute end-0 top-0 mt-3 me-3" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Login</button>
 
-      <div class="modal-body px-4 pb-4">
-        
-        <div class="mb-4 position-relative pb-2">
-          <label class="form-label text-white fw-semibold mb-1">Usuario</label>
-          <div class="d-flex align-items-center border-bottom border-fucsia-line">
-            <input type="text" id="username" class="form-control bg-transparent text-white custom-input ps-0" placeholder="admin">
-            <i class="bi bi-person text-white-50 fs-5 pb-1"></i>
-          </div>
+
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content login-card-dark">
+                        <div class="modal-header border-0 justify-content-center position-relative pt-4">
+                            <h3 class="modal-title w-100 text-center text-white fw-bold">Login</h3>
+                            <button type="button" class="btn-close btn-close-white position-absolute end-0 top-0 mt-3 me-3" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body px-4 pb-4">
+                            <div class="mb-4">
+                                <label class="form-label text-white fw-semibold">Usuario</label>
+                                <input type="text" id="username" class="form-control" placeholder="admin">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label text-white fw-semibold">Contraseña</label>
+                                <input type="password" id="password" class="form-control" value="123">
+                            </div>
+                            <button class="btn btn-primary w-100 fw-bold py-2 mb-2" onclick="login()">Iniciar sesion</button>
+                            <button class="btn btn-outline-dark w-100" onclick="logout()">Cerrar sesion</button>
+                        </div>
+                        <div class="modal-footer border-0 justify-content-center">
+                            <p id="mensaje" class="text-warning small mb-2"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+
+
+    <div class="container mt-4">
+        <h2>Gestión de Estudiantes</h2>
+
+        <div class="card mb-4 p-3">
+            <h5 id="titulo-form">Agregar Estudiante</h5>
+            <input type="hidden" id="id_estudiante_editar">
+            <div class="row g-2">
+                <div class="col-md-3">
+                    <input type="text" id="nombres" class="form-control" placeholder="Nombres">
+                </div>
+                <div class="col-md-3">
+                    <input type="text" id="apellidos" class="form-control" placeholder="Apellidos">
+                </div>
+                <div class="col-md-3">
+                    <input type="text" id="carrera" class="form-control" placeholder="Carrera">
+                </div>
+                <div class="col-md-3">
+                    <input type="number" id="promedio_acumulado" class="form-control" placeholder="Promedio" step="0.01">
+                </div>
+            </div>
+            <div class="mt-2">
+                <button class="btn btn-success" onclick="guardarEstudiante()">Guardar</button>
+                <button class="btn btn-secondary ms-2" onclick="limpiarFormulario()">Cancelar</button>
+            </div>
         </div>
 
-        <div class="mb-3">
-          <label class="form-label text-white fw-semibold mb-1">Contraceña</label>
-          <div class="d-flex align-items-center input-password-box px-3 py-1">
-            <input type="password" id="password" class="form-control bg-transparent text-white custom-input ps-0" value="123">
-            <i class="bi bi-eye-slash text-white fs-5"></i>
-          </div>
+        <div class="card mb-4 p-3">
+            <h5>Buscar estudiantes con promedio mayor o igual a:</h5>
+            <div class="d-flex gap-2">
+                <input type="number" id="promedio_buscar" class="form-control w-25" placeholder="Ej: 70" step="0.01">
+                <button class="btn btn-info" onclick="buscarPorPromedio()">Buscar</button>
+                <button class="btn btn-secondary" onclick="cargarEstudiantes()">Ver todos</button>
+            </div>
         </div>
-        <button class="btn btn-fucsia-main w-100 fw-bold py-2 mb-2" onclick="login()">Iniciar sesion</button>
-        <button type="button" class="btn btn-outline-dark w-100" onclick="logout()">Cerrar sesión</button>
-      </div>
 
-      <div class="modal-footer border-0 pt-0 justify-content-center">
-        <p id="mensaje" class="text-warning small mb-2"></p>
-      </div>
-      
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Carrera</th>
+                    <th>Promedio</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="tabla-estudiantes">
+       
+            </tbody>
+        </table>
     </div>
-  </div>
-</div>
-  </div>
-</nav>
-
-
-
-
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 
-  </body>
+    <script>
+        // Cargar estudiantes al abrir la pagina
+        window.onload = function() {
+            cargarEstudiantes();
+        }
+
+        // GET - listar todos los estudiantes
+        function cargarEstudiantes() {
+            fetch('/estudiantes')
+            .then(function(respuesta) {
+                return respuesta.json();
+            })
+            .then(function(datos) {
+                mostrarEstudiantes(datos);
+            });
+        }
+
+        // Mostrar estudiantes en la tabla
+        function mostrarEstudiantes(datos) {
+            var tabla = document.getElementById('tabla-estudiantes');
+            tabla.innerHTML = '';
+            datos.forEach(function(est) {
+                var fila = '<tr>' +
+                    '<td>' + est.id_estudiante + '</td>' +
+                    '<td>' + est.nombres + '</td>' +
+                    '<td>' + est.apellidos + '</td>' +
+                    '<td>' + est.carrera + '</td>' +
+                    '<td>' + est.promedio_acumulado + '</td>' +
+                    '<td>' +
+                        '<button class="btn btn-warning btn-sm me-1" onclick="editarEstudiante(' + est.id_estudiante + ', \'' + est.nombres + '\', \'' + est.apellidos + '\', \'' + est.carrera + '\', ' + est.promedio_acumulado + ')">Editar</button>' +
+                        '<button class="btn btn-danger btn-sm" onclick="eliminarEstudiante(' + est.id_estudiante + ')">Eliminar</button>' +
+                    '</td>' +
+                '</tr>';
+                tabla.innerHTML += fila;
+            });
+        }
+
+        // POST / PUT - guardar estudiante
+        function guardarEstudiante() {
+            var token = localStorage.getItem('token');
+            if (!token) {
+                alert('Debes iniciar sesion primero');
+                return;
+            }
+
+            var id = document.getElementById('id_estudiante_editar').value;
+            var nombres = document.getElementById('nombres').value;
+            var apellidos = document.getElementById('apellidos').value;
+            var carrera = document.getElementById('carrera').value;
+            var promedio = parseFloat(document.getElementById('promedio_acumulado').value);
+
+            var datos = {
+              nombres: nombres,
+              apellidos: apellidos,
+              carrera: carrera,
+              promedio_acumulado: promedio
+            };
+
+            // Si tiene id es edicion, si no es nuevo
+            var url = id ? '/estudiantes/' + id : '/estudiantes';
+            var metodo = id ? 'PUT' : 'POST';
+
+            fetch(url, {
+                method: metodo,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token
+                },
+                body: JSON.stringify(datos)
+            })
+            .then(function(respuesta) {
+                return respuesta.json();
+            })
+            .then(function(resultado) {
+                alert(resultado.mensaje);
+                limpiarFormulario();
+                cargarEstudiantes();
+            });
+        }
+
+        // Llenar formulario para editar
+        function editarEstudiante(id, nombres, apellidos, carrera, promedio) {
+            document.getElementById('id_estudiante_editar').value = id;
+            document.getElementById('nombres').value = nombres;
+            document.getElementById('apellidos').value = apellidos;
+            document.getElementById('carrera').value = carrera;
+            document.getElementById('promedio_acumulado').value = promedio;
+            document.getElementById('titulo-form').innerText = 'Editar Estudiante';
+        }
+
+        // DELETE - eliminar estudiante
+        function eliminarEstudiante(id) {
+            var token = localStorage.getItem('token');
+            if (!token) {
+                alert('Debes iniciar sesion primero');
+                return;
+            }
+
+            if (!confirm('¿Seguro que deseas eliminar este estudiante?')) {
+                return;
+            }
+
+            fetch('/estudiantes/' + id, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                }
+            })
+            .then(function(respuesta) {
+                return respuesta.json();
+            })
+            .then(function(resultado) {
+                alert(resultado.mensaje);
+                cargarEstudiantes();
+            });
+        }
+
+        // CONSULTA PERSONALIZADA - buscar por promedio
+        function buscarPorPromedio() {
+            var promedio = document.getElementById('promedio_buscar').value;
+            if (!promedio) {
+                alert('Ingresa un promedio');
+                return;
+            }
+
+            fetch('/estudiantes/promedio/' + promedio)
+            .then(function(respuesta) {
+                return respuesta.json();
+            })
+            .then(function(datos) {
+                mostrarEstudiantes(datos);
+            });
+        }
+
+        // Limpiar formulario
+        function limpiarFormulario() {
+            document.getElementById('id_estudiante_editar').value = '';
+            document.getElementById('nombres').value = '';
+            document.getElementById('apellidos').value = '';
+            document.getElementById('carrera').value = '';
+            document.getElementById('promedio_acumulado').value = '';
+            document.getElementById('titulo-form').innerText = 'Agregar Estudiante';
+        }
+    </script>
+
+</body>
 </html>

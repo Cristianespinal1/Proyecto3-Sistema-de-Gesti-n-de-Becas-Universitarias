@@ -86,13 +86,15 @@ INSERT INTO `documentos` (`id_documento`, `id_postulacion`, `tipo_documento`, `u
 -- Estructura de tabla para la tabla `estudiantes`
 --
 
+-- Tabla estudiantes (CAMBIADO: PRIMARY KEY dentro del CREATE)
 CREATE TABLE `estudiantes` (
-  `id_estudiante` int(11) NOT NULL,
+  `id_estudiante` int(11) NOT NULL AUTO_INCREMENT,
   `nombres` varchar(100) NOT NULL,
   `apellidos` varchar(100) NOT NULL,
   `carrera` varchar(100) NOT NULL,
-  `promedio_acumulado` decimal(5,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `promedio_acumulado` decimal(5,2) NOT NULL,
+  PRIMARY KEY (`id_estudiante`)
+) ENGINE=InnoDB AUTO_INCREMENT=100213 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `estudiantes`
@@ -158,11 +160,7 @@ ALTER TABLE `documentos`
   ADD PRIMARY KEY (`id_documento`),
   ADD KEY `fk_documento_postulacion` (`id_postulacion`);
 
---
--- Indices de la tabla `estudiantes`
---
-ALTER TABLE `estudiantes`
-  ADD PRIMARY KEY (`id_estudiante`);
+
 
 --
 -- Indices de la tabla `postulaciones`
