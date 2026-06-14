@@ -2,7 +2,6 @@ from flask import Flask, jsonify, render_template, request
 from flask_mysqldb import MySQL
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required
 
-    
 app = Flask(__name__)
 mysql = MySQL(app)
 
@@ -46,6 +45,7 @@ def login():
         token = create_access_token(identity = username)
         return jsonify(access_token=token)
     return jsonify({"error":"credenciales incorrectas"}), 401
+
 #--------------------------------GET------------------------
 @app.route('/becas', methods=['GET'])
 def listar_becas():
@@ -130,6 +130,7 @@ def listar_postulacion():
         )
     cursor.close()
     return jsonify(postulacion)
+
 #-----------------------------POST-----------------------------
 @app.route('/becas', methods=['POST'])
 @jwt_required()
@@ -140,7 +141,6 @@ def insertar_beca():
     gestion = data["gestion"]
     promedio_minimo = data["promedio_minimo"]
     
-    #insertar en la tabla categoria
     cursor = mysql.connection.cursor()
     sql = """INSERT INTO becas(nombre_beca,descripcion, gestion, promedio_minimo )
             VALUES(%s,%s,%s,%s)"""
@@ -157,7 +157,6 @@ def insertar_documendos():
     tipo_documento = data["tipo_documento"]
     url_archivo = data["url_archivo"]
     
-    #insertar en la tabla categoria
     cursor = mysql.connection.cursor()
     sql = """INSERT INTO documentos (id_postulacion, tipo_documento,url_archivo )
             VALUES(%s,%s,%s)"""
@@ -194,7 +193,6 @@ def insertar_postulacion():
     estado=data["estado"]
     observaciones=data["observaciones"]
     
-    #insertar en la tabla categoria
     cursor = mysql.connection.cursor()
     sql = """INSERT INTO postulaciones (id_estudiante, id_beca, fecha_postulacion, estado,observaciones )
             VALUES(%s,%s,%s,%s,%s)"""
@@ -202,11 +200,11 @@ def insertar_postulacion():
     mysql.connection.commit()
     cursor.close()
     return jsonify({"mensaje": "postulacion registrada con exito"}),201
+
 #------------------------------------PUT----------------------------
 @app.route('/becas/<int:id>', methods=['PUT'])
 @jwt_required()
 def actualizar_becas(id):
-    
     data = request.get_json()
     nombre_beca = data["nombre_beca"]
     descripcion = data["descripcion"]
@@ -217,16 +215,14 @@ def actualizar_becas(id):
     sql = """UPDATE becas
               SET nombre_beca = %s,   descripcion= %s,  gestion= %s, promedio_minimo = %s
               WHERE id_beca = %s"""
-
     cursor.execute(sql, (nombre_beca,descripcion,gestion,promedio_minimo, id,))
-
     mysql.connection.commit()
     cursor.close()
     return jsonify({"mensaje": "Beca actualizado correctamente"}), 200
+
 @app.route('/documentos/<int:id>', methods=['PUT'])
 @jwt_required()
 def actualizar_documendo(id):
-    
     data = request.get_json()
     id_postulacion= data["id_postulacion"]
     tipo_documento = data["tipo_documento"]
@@ -236,12 +232,11 @@ def actualizar_documendo(id):
     sql = """UPDATE documentos
               SET id_postulacion = %s, tipo_documento= %s,  url_archivo= %s
               WHERE id_documento = %s"""
-
     cursor.execute(sql, (id_postulacion,tipo_documento,url_archivo, id,))
-
     mysql.connection.commit()
     cursor.close()
     return jsonify({"mensaje": "documendos actualizado correctamente"}), 200
+
 @app.route('/estudiantes/<int:id>', methods=['PUT'])
 @jwt_required()
 def actualizar_estudiante(id): 
@@ -255,9 +250,7 @@ def actualizar_estudiante(id):
     sql = """UPDATE estudiantes
               SET id_estudiante=%s, nombres = %s, apellidos= %s,  carrera= %s, promedio_acumulado= %s
               WHERE id_estudiante = %s"""
-
     cursor.execute(sql, (id_estudiante,nombres,apellidos,carrera,promedio_acumulado, id,))
-
     mysql.connection.commit()
     cursor.close()
     return jsonify({"mensaje": "estudiante actualizado correctamente"}), 200
@@ -275,28 +268,23 @@ def actualizar_postulacion(id):
     sql = """UPDATE postulaciones
               SET id_estudiante = %s, id_beca= %s,  fecha_postulacion= %s, estado= %s, observaciones=%s
               WHERE id_postulacion = %s"""
-
     cursor.execute(sql, (id_estudiante,id_beca,fecha_postulacion,estado,observaciones, id,))
-
     mysql.connection.commit()
     cursor.close()
     return jsonify({"mensaje": "postulacion actualizado correctamente"}), 200
+
 #-------------------------------------------DELETE----------------------------
 @app.route('/becas/<int:id>', methods=['DELETE'])
 @jwt_required()
 def eliminar_beca(id):
     cursor = mysql.connection.cursor()
-    #BUSCAR EL CATEGORIA
     sql = """SELECT * FROM becas WHERE id_beca = %s"""
     cursor.execute(sql, (id,))
     datos = cursor.fetchone()
-
     if datos is None:
         return jsonify({"mensaje": "la beca no existe!"})
     
-    #cursor = mysql.connection.cursor()
-    sql = """DELETE FROM becas
-            WHERE id_beca = %s"""
+    sql = """DELETE FROM becas WHERE id_beca = %s"""
     cursor.execute(sql,(id,))
     mysql.connection.commit()
     cursor.close()
@@ -306,36 +294,29 @@ def eliminar_beca(id):
 @jwt_required()
 def eliminar_documento(id):
     cursor = mysql.connection.cursor()
-    #BUSCAR EL CATEGORIA
     sql = """SELECT * FROM documentos WHERE id_documento = %s"""
     cursor.execute(sql, (id,))
     datos = cursor.fetchone()
-
     if datos is None:
         return jsonify({"mensaje": "el documendo no existe!"})
     
-    #cursor = mysql.connection.cursor()
-    sql = """DELETE FROM documentos
-            WHERE id_documento = %s"""
+    sql = """DELETE FROM documentos WHERE id_documento = %s"""
     cursor.execute(sql,(id,))
     mysql.connection.commit()
     cursor.close()
     return jsonify({"mensaje": "documento Eliminada"}),200
+
 @app.route('/estudiantes/<int:id>', methods=['DELETE'])
 @jwt_required()
 def eliminar_estudiante(id):
     cursor = mysql.connection.cursor()
-    #BUSCAR EL CATEGORIA
     sql = """SELECT * FROM estudiantes WHERE id_estudiante = %s"""
     cursor.execute(sql, (id,))
     datos = cursor.fetchone()
-
     if datos is None:
         return jsonify({"mensaje": "el estudiante no existe!"})
     
-    #cursor = mysql.connection.cursor()
-    sql = """DELETE FROM estudiantes
-            WHERE id_estudiante = %s"""
+    sql = """DELETE FROM estudiantes WHERE id_estudiante = %s"""
     cursor.execute(sql,(id,))
     mysql.connection.commit()
     cursor.close()
@@ -345,24 +326,19 @@ def eliminar_estudiante(id):
 @jwt_required()
 def eliminar_postulacion(id):
     cursor = mysql.connection.cursor()
-    #BUSCAR EL CATEGORIA
     sql = """SELECT * FROM postulaciones WHERE id_postulacion = %s"""
     cursor.execute(sql, (id,))
     datos = cursor.fetchone()
-
     if datos is None:
         return jsonify({"mensaje": "la postulacion no existe!"})
     
-    #cursor = mysql.connection.cursor()
-    sql = """DELETE FROM postulaciones
-            WHERE id_postulacion = %s"""
+    sql = """DELETE FROM postulaciones WHERE id_postulacion = %s"""
     cursor.execute(sql,(id,))
     mysql.connection.commit()
     cursor.close()
     return jsonify({"mensaje": "postulacion  Eliminada"}),200
 
 #------------------------------CONSULTAS LOPEZ-----------------------------
-
 @app.route('/consultas/pendientes', methods=['GET'])
 def consulta_pendientes():
     cursor = mysql.connection.cursor()
@@ -395,8 +371,7 @@ def consulta_pendientes():
         })
     cursor.close()
     return jsonify(resultado)
-#------------------------------CONSULTAS LOPEZ-----------------------------
-# CONSULTA PERSONALIZADA - estudiantes con promedio mayor a X
+
 @app.route('/estudiantes/promedio/<promedio>', methods=['GET'])
 def estudiantes_por_promedio(promedio):
     promedio = float(promedio)
@@ -416,5 +391,76 @@ def estudiantes_por_promedio(promedio):
     cursor.close()
     return jsonify(estudiantes)
 
+
+#============================== TU SECCIÓN: SIMULADOR MATCHMAKER DE BECAS ==============================
+@app.route('/consultas/matchmaker', methods=['GET'])
+def matchmaker_becas():
+    criterio = request.args.get('criterio', '').strip()
+    
+    if not criterio:
+        return jsonify([])
+
+    cursor = mysql.connection.cursor()
+    
+    # 1. Determinar si es ID (número) o Nombre/Apellido
+    if criterio.isdigit():
+        sql_estudiante = """SELECT id_estudiante, nombres, apellidos, carrera, promedio_acumulado 
+                            FROM estudiantes WHERE id_estudiante = %s"""
+        cursor.execute(sql_estudiante, (criterio,))
+    else:
+        sql_estudiante = """SELECT id_estudiante, nombres, apellidos, carrera, promedio_acumulado 
+                            FROM estudiantes 
+                            WHERE nombres LIKE %s OR apellidos LIKE %s 
+                            LIMIT 1"""
+        cursor.execute(sql_estudiante, (f"%{criterio}%", f"%{criterio}%"))
+        
+    estudiante = cursor.fetchone()
+    
+    if estudiante is None:
+        cursor.close()
+        return jsonify([]) 
+    
+    id_est = int(estudiante[0])
+    nombres_est = str(estudiante[1])
+    apellidos_est = str(estudiante[2])
+    carrera_est = str(estudiante[3])
+    promedio_est = float(estudiante[4])
+    
+    # 2. Buscar las becas compatibles
+    sql_becas = """SELECT id_beca, nombre_beca, descripcion, gestion, promedio_minimo 
+                   FROM becas 
+                   WHERE promedio_minimo <= %s
+                   ORDER BY promedio_minimo DESC"""
+    cursor.execute(sql_becas, (promedio_est,))
+    datos_becas = cursor.fetchall()
+    
+    resultado = []
+    
+    # Índice 0: Estudiante
+    resultado.append({
+        "es_estudiante": True,
+        "id_estudiante": id_est,
+        "nombres": nombres_est,
+        "apellidos": apellidos_est,
+        "carrera": carrera_est,
+        "promedio_acumulado": promedio_est
+    })
+    
+    # Índices siguientes: Becas
+    for fila in datos_becas:
+        resultado.append({
+            "es_estudiante": False,
+            "id_beca": int(fila[0]),
+            "nombre_beca": str(fila[1]),
+            "descripcion": str(fila[2]),
+            "gestion": str(fila[3]),
+            "promedio_minimo": float(fila[4])
+        })
+        
+    cursor.close()
+    return jsonify(resultado)
+
+
+# ESTO DEBE SER SIEMPRE EL FINAL ABSOLUTO DEL ARCHIVO
 if __name__ == '__main__':
     app.run(debug=True)

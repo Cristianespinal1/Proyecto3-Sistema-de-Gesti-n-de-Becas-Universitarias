@@ -4,128 +4,85 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='estilos.css') }}">
-    <title>Document</title>
+    <title>Gestión de Becas - Consultas</title>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">
-      <img src="{{ url_for('static', filename='logo.png') }}" alt="Avatar Logo" style="width:60px;" class="rounded-pill">Gestion De Becas</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">Inicio</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/becas_html">becas</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/estudiantes_html">estudiantes</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/postulaciones_html">postulaciones</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/documentos_html">documentos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/consultas_html">consultas</a>
-        </li>
-      </ul>
-      
-      
-    </div>
-    <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-  Login
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered"> <div class="modal-content login-card-dark">
-      
-      <div class="modal-header border-0 justify-content-center position-relative pt-4">
-        <h3 class="modal-title w-100 text-center text-white fw-bold" id="staticBackdropLabel">Login</h3>
-        <button type="button" class="btn-close btn-close-white position-absolute end-0 top-0 mt-3 me-3" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-
-      <div class="modal-body px-4 pb-4">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img src="{{ url_for('static', filename='logo.png') }}" alt="Avatar Logo" style="width:60px;" class="rounded-pill">Gestion De Becas</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link active" href="/">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link active" href="/becas_html">becas</a></li>
+            <li class="nav-item"><a class="nav-link active" href="/estudiantes_html">estudiantes</a></li>
+            <li class="nav-item"><a class="nav-link active" href="/postulaciones_html">postulaciones</a></li>
+            <li class="nav-item"><a class="nav-link active" href="/documentos_html">documentos</a></li>
+            <li class="nav-item"><a class="nav-link active" href="/consultas_html">consultas</a></li>
+          </ul>
+        </div>
         
-        <div class="mb-4 position-relative pb-2">
-          <label class="form-label text-white fw-semibold mb-1">Usuario</label>
-          <div class="d-flex align-items-center border-bottom border-fucsia-line">
-            <input type="text" id="username" class="form-control bg-transparent text-white custom-input ps-0" placeholder="admin">
-            <i class="bi bi-person text-white-50 fs-5 pb-1"></i>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Login</button>
+
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered"> 
+            <div class="modal-content login-card-dark">
+              <div class="modal-header border-0 justify-content-center position-relative pt-4">
+                <h3 class="modal-title w-100 text-center text-white fw-bold" id="staticBackdropLabel">Login</h3>
+                <button type="button" class="btn-close btn-close-white position-absolute end-0 top-0 mt-3 me-3" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body px-4 pb-4">
+                <div class="mb-4 position-relative pb-2">
+                  <label class="form-label text-white fw-semibold mb-1">Usuario</label>
+                  <div class="d-flex align-items-center border-bottom border-fucsia-line">
+                    <input type="text" id="username" class="form-control bg-transparent text-white custom-input ps-0" placeholder="admin">
+                    <i class="bi bi-person text-white-50 fs-5 pb-1"></i>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label text-white fw-semibold mb-1">Contraceña</label>
+                  <div class="d-flex align-items-center input-password-box px-3 py-1">
+                    <input type="password" id="password" class="form-control bg-transparent text-white custom-input ps-0" value="123">
+                    <i class="bi bi-eye-slash text-white fs-5"></i>
+                  </div>
+                </div>
+                <button class="btn btn-fucsia-main w-100 fw-bold py-2 mb-2" onclick="login()">Iniciar sesion</button>
+                <button type="button" class="btn btn-outline-dark w-100" onclick="logout()">Cerrar sesión</button>
+              </div>
+              <div class="modal-footer border-0 pt-0 justify-content-center">
+                <p id="mensaje" class="text-warning small mb-2"></p>
+              </div>
+            </div>
           </div>
         </div>
-
-        <div class="mb-3">
-          <label class="form-label text-white fw-semibold mb-1">Contraceña</label>
-          <div class="d-flex align-items-center input-password-box px-3 py-1">
-            <input type="password" id="password" class="form-control bg-transparent text-white custom-input ps-0" value="123">
-            <i class="bi bi-eye-slash text-white fs-5"></i>
-          </div>
-        </div>
-        <button class="btn btn-fucsia-main w-100 fw-bold py-2 mb-2" onclick="login()">Iniciar sesion</button>
-        <button type="button" class="btn btn-outline-dark w-100" onclick="logout()">Cerrar sesión</button>
       </div>
+    </nav>
 
-      <div class="modal-footer border-0 pt-0 justify-content-center">
-        <p id="mensaje" class="text-warning small mb-2"></p>
-      </div>
-      
-    </div>
-  </div>
-</div>
-  </div>
-</nav>
-<!-- ------------------------------CONSULTAS LOPEZ------------------------------>
-<div class="container mt-4">
-  <h2 class="mb-3">Postulaciones Pendientes</h2>
-  <p class="text-muted">Estudiantes que aún no han sido evaluados por la universidad.</p>
-  <table class="table table-bordered table-hover" id="tablaPendientes">
-    <thead class="table-dark">
-      <tr>
-        <th>#</th>
-        <th>Nombres</th>
-        <th>Apellidos</th>
-        <th>Beca</th>
-        <th>Fecha</th>
-        <th>Estado</th>
-      </tr>
-    </thead>
-    <tbody id="cuerpoTabla">
-    </tbody>
-  </table>
-</div>
-
-<script>
-  fetch('/consultas/pendientes')
-    .then(res => res.json())
-    .then(data => {
-      const tbody = document.getElementById('cuerpoTabla');
-      data.forEach((item, i) => {
-        tbody.innerHTML += `
-          <tr>
-            <td>${i+1}</td>
-            <td>${item.nombres}</td>
-            <td>${item.apellidos}</td>
-            <td>${item.nombre_beca}</td>
-            <td>${item.fecha_postulacion}</td>
-            <td><span class="badge bg-warning text-dark">${item.estado}</span></td>
-          </tr>`;
-      });
-    });
-</script>
-<!-- ------------------------------CONSULTAS LOPEZ---------------------------- -->
     <div class="container mt-4">
-        <h2>Consultas</h2>
+      <h2 class="mb-3">Postulaciones Pendientes</h2>
+      <p class="text-muted">Estudiantes que aún no han sido evaluados por la universidad.</p>
+      <table class="table table-bordered table-hover" id="tablaPendientes">
+        <thead class="table-dark">
+          <tr>
+            <th>#</th>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>Beca</th>
+            <th>Fecha</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody id="cuerpoTabla"></tbody>
+      </table>
+    </div>
 
-        <!-- CONSULTA: estudiantes por promedio -->
+    <div class="container mt-4">
+        <h2>Consultas Generales</h2>
         <div class="card mb-4 p-3">
             <h5>Buscar estudiantes con promedio mayor o igual a:</h5>
             <div class="d-flex gap-2">
@@ -135,8 +92,7 @@
             </div>
         </div>
 
-        <!-- TABLA DE RESULTADOS -->
-        <table class="table table-bordered table-striped">
+        <table class="table table-bordered table-striped mb-5">
             <thead class="table-dark">
                 <tr>
                     <th>ID</th>
@@ -146,23 +102,87 @@
                     <th>Promedio</th>
                 </tr>
             </thead>
-            <tbody id="tabla-resultados">
-            </tbody>
+            <tbody id="tabla-resultados"></tbody>
         </table>
     </div>
 
+
+    <div class="container mt-5 mb-5">
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-dark text-white py-3">
+                <h4 class="mb-0">Simulador de Elegibilidad de Becas</h4>
+                <p class="mb-0 small text-light">Encuentra un estudiante por su ID, Nombre o Apellido para descubrir a qué becas puede aplicar según su rendimiento.</p>
+            </div>
+            <div class="card-body p-4">
+                <div class="row g-3 align-items-center mb-4">
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-text bg-transparent"><i class="bi bi-search"></i></span>
+                            <input type="text" id="criterio_matchmaker" class="form-control" placeholder="Ej: 100203 o Carlos Lopez">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <button class="btn btn-success px-4" onclick="ejecutarMatchmaker()">Buscar y Evaluar</button>
+                        <button class="btn btn-secondary ms-2" onclick="limpiarMatchmaker()">Limpiar</button>
+                    </div>
+                </div>
+
+                <div id="perfil-estudiante-box" class="card bg-light p-3 mb-4 d-none border-start border-4 border-info">
+                    <h5>Perfil del Estudiante Evaluado:</h5>
+                    <div class="row mt-2">
+                        <div class="col-sm-3"><strong>ID:</strong> <span id="perf-id"></span></div>
+                        <div class="col-sm-4"><strong>Nombre Completo:</strong> <span id="perf-nombre"></span></div>
+                        <div class="col-sm-3"><strong>Carrera:</strong> <span id="perf-carrera"></span></div>
+                        <div class="col-sm-2"><strong>Promedio:</strong> <span class="badge bg-primary fs-6" id="perf-promedio"></span></div>
+                    </div>
+                </div>
+
+                <div id="resultado-becas-box" class="d-none">
+                    <h5 class="text-success mb-3">Programas de Becas a los que Puede Acceder:</h5>
+                    <table class="table table-bordered table-striped table-hover align-middle">
+                        <thead class="table-success">
+                            <tr>
+                                <th>ID Beca</th>
+                                <th>Nombre de la Beca</th>
+                                <th>Descripción</th>
+                                <th>Gestión Activa</th>
+                                <th>Promedio Mínimo Requerido</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-matchmaker-becas"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
+        // 1. Carga automática de postulaciones pendientes (López)
+        fetch('/consultas/pendientes')
+        .then(res => res.json())
+        .then(data => {
+            const tbody = document.getElementById('cuerpoTabla');
+            data.forEach((item, i) => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td>${i+1}</td>
+                        <td>${item.nombres}</td>
+                        <td>${item.apellidos}</td>
+                        <td>${item.nombre_beca}</td>
+                        <td>${item.fecha_postulacion}</td>
+                        <td><span class="badge bg-warning text-dark">${item.estado}</span></td>
+                    </tr>`;
+            });
+        });
+
+        // 2. Buscar Estudiantes por promedio (López)
         function buscarPorPromedio() {
             var promedio = document.getElementById('promedio_buscar').value;
             if (!promedio) {
                 alert('Ingresa un promedio');
                 return;
             }
-
             fetch('/estudiantes/promedio/' + promedio)
-            .then(function(respuesta) {
-                return respuesta.json();
-            })
+            .then(function(respuesta) { return respuesta.json(); })
             .then(function(datos) {
                 var tabla = document.getElementById('tabla-resultados');
                 tabla.innerHTML = '';
@@ -183,11 +203,83 @@
             document.getElementById('tabla-resultados').innerHTML = '';
             document.getElementById('promedio_buscar').value = '';
         }
-    </script>
 
+        function ejecutarMatchmaker() {
+            var criterio = document.getElementById('criterio_matchmaker').value.trim();
+            if (!criterio) {
+                alert('Por favor, ingresa un ID, Nombre o Apellido para buscar.');
+                return;
+            }
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/consultas/matchmaker?criterio=' + encodeURIComponent(criterio), true);
+            
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    var datos = JSON.parse(xhr.responseText);
+                    console.log("Datos del Matchmaker:", datos);
+
+                    if (!datos || datos.length === 0) {
+                        alert('No se encontró ningún estudiante con ese criterio.');
+                        limpiarMatchmaker();
+                        return;
+                    }
+
+                    var infoEstudiante = datos[0];
+
+                    // Mostrar y rellenar perfil
+                    document.getElementById('perfil-estudiante-box').classList.remove('d-none');
+                    document.getElementById('perf-id').innerText = infoEstudiante.id_estudiante;
+                    document.getElementById('perf-nombre').innerText = infoEstudiante.nombres + ' ' + infoEstudiante.apellidos;
+                    document.getElementById('perf-carrera').innerText = infoEstudiante.carrera;
+                    document.getElementById('perf-promedio').innerText = infoEstudiante.promedio_acumulado;
+
+                    var resultadoBox = document.getElementById('resultado-becas-box');
+                    var tbody = document.getElementById('tabla-matchmaker-becas');
+                    tbody.innerHTML = ''; 
+                    resultadoBox.classList.remove('d-none');
+
+                    if (datos.length === 1) {
+                        tbody.innerHTML = `<tr>
+                            <td colspan="5" class="text-center text-danger fw-bold py-3">
+                                 El alumno no alcanza el promedio mínimo para ninguna beca registrada en el sistema.
+                            </td>
+                        </tr>`;
+                        return;
+                    }
+
+                    for (var i = 1; i < datos.length; i++) {
+                        var beca = datos[i];
+                        var fila = `<tr>
+                            <td>${beca.id_beca}</td>
+                            <td><strong>${beca.nombre_beca}</strong></td>
+                            <td>${beca.descripcion}</td>
+                            <td><span class="badge bg-secondary">${beca.gestion}</span></td>
+                            <td><span class="badge bg-success">${beca.promedio_minimo}</span></td>
+                        </tr>`;
+                        tbody.innerHTML += fila;
+                    }
+                } else {
+                    alert('Error en el servidor de Flask (Código ' + xhr.status + ')');
+                }
+            };
+
+            xhr.onerror = function () {
+                alert('Error de red o conexión al procesar la solicitud.');
+            };
+
+            xhr.send();
+        }
+
+        function limpiarMatchmaker() {
+            document.getElementById('criterio_matchmaker').value = '';
+            document.getElementById('perfil-estudiante-box').classList.add('d-none');
+            document.getElementById('resultado-becas-box').classList.add('d-none');
+            document.getElementById('tabla-matchmaker-becas').innerHTML = '';
+        }
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
-
-  </body>
+</body>
 </html>
