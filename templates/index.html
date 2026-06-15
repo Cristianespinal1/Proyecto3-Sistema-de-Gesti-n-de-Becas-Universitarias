@@ -1,115 +1,187 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='estilos.css') }}">
-    <title>Document</title>
+    <title>Gestión de Becas - Inicio</title>
 </head>
 <body>
-  <header>
-  <div class="Cote">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">
-      <img src="{{ url_for('static', filename='logo.png') }}" alt="Avatar Logo" style="width:40px;" class="rounded-pill">Gestion De Becas</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">Inicio</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/becas_html">becas</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/estudiantes_html">estudiantes</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/postulaciones_html">postulaciones</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/documentos_html">documentos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/consultas_html">consultas</a>
-        </li>
-      </ul>
-      
-      
-    </div>
-    <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-  Login
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered"> <div class="modal-content login-card-dark">
-      
-      <div class="modal-header border-0 justify-content-center position-relative pt-4">
-        <h3 class="modal-title w-100 text-center text-white fw-bold" id="staticBackdropLabel">Login</h3>
-        <button type="button" class="btn-close btn-close-white position-absolute end-0 top-0 mt-3 me-3" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-
-      <div class="modal-body px-4 pb-4">
-        
-        <div class="mb-4 position-relative pb-2">
-          <label class="form-label text-white fw-semibold mb-1">Usuario</label>
-          <div class="d-flex align-items-center border-bottom border-fucsia-line">
-            <input type="text" id="username" class="form-control bg-transparent text-white custom-input ps-0" placeholder="admin">
-            <i class="bi bi-person text-white-50 fs-5 pb-1"></i>
-          </div>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label text-white fw-semibold mb-1">Contraceña</label>
-          <div class="d-flex align-items-center input-password-box px-3 py-1">
-            <input type="password" id="password" class="form-control bg-transparent text-white custom-input ps-0" value="123">
-            <i class="bi bi-eye-slash text-white fs-5"></i>
-          </div>
-        </div>
-        <button class="btn btn-fucsia-main w-100 fw-bold py-2 mb-2" onclick="login()">Iniciar sesion</button>
-        <button type="button" class="btn btn-outline-dark w-100" onclick="logout()">Cerrar sesión</button>
-      </div>
-
-      <div class="modal-footer border-0 pt-0 justify-content-center">
-        <p id="mensaje" class="text-warning small mb-2"></p>
-      </div>
-      
-     </div>
-    </div>
-   </div>
-    </div>
-  </nav>
-       <div class="contenido-header">
-                <h1 class="titulo-header">Sistema Gestion De Becas Universitarias</h1>
-                <span class="linea-header"></span>
-                <h2 class="texto-header" style="color: white;">Sistem de gestion de becas Universitarias <span class="desaparecer">Registrar información relacionada con las prácticas profesionales 💡 </span></h2>
-                <a href="consultas_html" class="action-header"style="color: white;">Consultas</a>
-            </div>
-</div>
-</header>
-<main>
     
-            <section class="quienes">
-               <div class="contenedor">
-                   <h3 class="quienes-titulo">Simple & puro diseño de una Api</h3>
-                   <p class="quienes-parrafo">La universidad otorga diferentes tipos de becas a estudiantes. Actualmente la información se encuentra dispersa y se requiere una aplicación web que permita administrar las postulaciones y realizar consultas sobre los beneficiarios. Problemas a resolver </p>
-                </div> 
-            </section>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow">
+      <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="/">
+          <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" style="width:40px;" class="rounded-pill">
+          <span class="fw-bold text-white">Gestión De Becas</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-3">
+            <li class="nav-item"><a class="nav-link active fw-semibold" href="/">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="/becas_html">Becas</a></li>
+            <li class="nav-item"><a class="nav-link" href="/estudiantes_html">Estudiantes</a></li>
+            <li class="nav-item"><a class="nav-link" href="/postulaciones_html">Postulaciones</a></li>
+            <li class="nav-item"><a class="nav-link" href="/documentos_html">Documentos</a></li>
+            <li class="nav-item"><a class="nav-link" href="/consultas_html">Consultas</a></li>
+          </ul>
+        </div>
+        
+        <button type="button" class="btn btn-primary px-4 fw-bold shadow-sm" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+          <i class="bi bi-box-arrow-in-right me-1"></i> Login
+        </button>
+      </div>
+    </nav>
+
+    <header class="bg-dark text-white py-5 text-center position-relative shadow-sm" style="background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.75)), url('/static/background.jpg') no-repeat center center/cover;">
+        <div class="container py-5">
+            <h1 class="display-4 fw-bold mb-3">Sistema de Gestión de Becas Universitarias</h1>
+            <p class="lead mx-auto mb-4 text-light" style="max-width: 700px;">
+                Plataforma centralizada para la administración de solicitudes, validación de rendimiento académico y asignación eficiente de beneficios económicos estudiantiles.
+            </p>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="/consultas_html" class="btn btn-info btn-lg px-4 fw-bold shadow"><i class="bi bi-search me-2"></i>Ir a Consultas</a>
+                <a href="#modulos" class="btn btn-outline-light btn-lg px-4"><i class="bi bi-grid me-2"></i>Ver Módulos</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container my-5">
+        
+        <div class="row g-4 mb-5 text-center">
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm border-start border-4 border-primary bg-light">
+                    <div class="card-body p-4">
+                        <div class="fs-1 text-primary mb-2"><i class="bi bi-award"></i></div>
+                        <h5 class="card-title text-muted mb-1">Programas Activos</h5>
+                        <h2 class="display-6 fw-bold text-dark">8 Becas</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm border-start border-4 border-warning bg-light">
+                    <div class="card-body p-4">
+                        <div class="fs-1 text-warning mb-2"><i class="bi bi-hourglass-split"></i></div>
+                        <h5 class="card-title text-muted mb-1">Postulaciones Pendientes</h5>
+                        <h2 class="display-6 fw-bold text-dark">Evaluando...</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm border-start border-4 border-success bg-light">
+                    <div class="card-body p-4">
+                        <div class="fs-1 text-success mb-2"><i class="bi bi-graph-up-arrow"></i></div>
+                        <h5 class="card-title text-muted mb-1">Simulador de Cruce</h5>
+                        <h2 class="display-6 fw-bold text-dark">Matchmaker 🎯</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="row align-items-center my-5 py-3">
+            <div class="col-lg-6">
+                <h3 class="fw-bold mb-3"><i class="bi bi-journal-check text-info me-2"></i>Administración y Control de Beneficios</h3>
+                <p class="text-muted fs-5">
+                    Actualmente, la información de los estímulos universitarios suele encontrarse dispersa. Esta aplicación unifica las bases de datos para permitir un seguimiento en tiempo real del estado de cada alumno.
+                </p>
+                <p class="text-muted">
+                    Resuelve de manera estructurada los problemas comunes de elegibilidad cruzando promedios acumulados mínimos con los requisitos de las convocatorias vigentes.
+                </p>
+            </div>
+            <div class="col-lg-6 bg-light p-4 rounded shadow-sm border">
+                <h5 class="fw-bold text-dark"><i class="bi bi-lightning-charge-fill text-warning me-2"></i>Arquitectura del Sistema (API Rest)</h5>
+                <p class="small text-secondary mb-0">
+                    Construido sobre una arquitectura limpia y desacoplada mediante un backend en Flask y comunicación estructurada en JSON que facilita las operaciones CRUD corporativas.
+                </p>
+                <hr>
+                <div class="d-flex align-items-center gap-2 text-success fw-bold small">
+                    <i class="bi bi-check-circle-fill"></i> Conexión MySQL Establecida
+                </div>
+            </div>
+        </section>
+
+        <section id="modulos" class="my-5">
+            <h4 class="text-center fw-bold mb-4">Módulos Administrativos del Sistema</h4>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm border-0 card-hover-effect">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold"><i class="bi bi-people-fill text-primary me-2"></i>Estudiantes</h5>
+                            <p class="card-text text-muted small">Gestión del padrón de alumnos, actualización de carreras y seguimiento de promedios acumulados.</p>
+                            <a href="/estudiantes_html" class="btn btn-sm btn-outline-primary">Administrar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm border-0 card-hover-effect">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold"><i class="bi bi-file-earmark-text-fill text-success me-2"></i>Postulaciones</h5>
+                            <p class="card-text text-muted small">Control e inserción de nuevas solicitudes evaluando estados: Aprobado, Rechazado o Pendiente.</p>
+                            <a href="/postulaciones_html" class="btn btn-sm btn-outline-success">Ver Solicitudes</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm border-0 card-hover-effect">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold"><i class="bi bi-shield-lock-fill text-danger me-2"></i>Documentos</h5>
+                            <p class="card-text text-muted small">Validación de expedientes digitales adjuntos y soportes de requisitos de los postulantes.</p>
+                            <a href="/documentos_html" class="btn btn-sm btn-outline-danger">Auditar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
+    <footer class="bg-dark text-white-50 text-center py-4 mt-5 border-top border-secondary">
+        <div class="container">
+            <p class="mb-1 small">&copy; 2026 - Sistema de Gestión de Becas Universitarias</p>
+            <p class="mb-0 text-muted" style="font-size: 0.8rem;">Desarrollado de forma limpia con Python Flask, MySQL y Bootstrap 5</p>
+        </div>
+    </footer>
 
 
-
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered"> 
+        <div class="modal-content login-card-dark bg-dark text-white shadow">
+          <div class="modal-header border-0 justify-content-center position-relative pt-4">
+            <h3 class="modal-title w-100 text-center fw-bold text-info" id="staticBackdropLabel">Iniciar Sesión</h3>
+            <button type="button" class="btn-close btn-close-white position-absolute end-0 top-0 mt-3 me-3" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body px-4 pb-3">
+            
+            <div class="mb-4 position-relative">
+              <label class="form-label fw-semibold text-white mb-1">Usuario</label>
+              <div class="d-flex align-items-center border-bottom border-fucsia-line bg-secondary bg-opacity-25 rounded px-2">
+                <input type="text" id="username" class="form-control bg-transparent text-white custom-input ps-1 border-0 py-2" placeholder="admin">
+                <i class="bi bi-person text-white-50 fs-5 px-1"></i>
+              </div>
+            </div>
+            
+            <div class="mb-3 position-relative">
+              <label class="form-label fw-semibold text-white mb-1">Contraseña</label>
+              <div class="d-flex align-items-center input-password-box border-bottom border-fucsia-line bg-secondary bg-opacity-25 rounded px-2">
+                <input type="password" id="password" class="form-control bg-transparent text-white custom-input ps-1 border-0 py-2" value="123">
+                <i class="bi bi-eye-slash text-white-50 fs-5 px-1"></i>
+              </div>
+            </div>
+            
+            <button class="btn btn-success w-100 fw-bold py-2 mb-2 mt-4 shadow" onclick="login()">Ingresar al Sistema</button>
+            <button type="button" class="btn btn-outline-light w-100 btn-sm mt-1" data-bs-dismiss="modal" onclick="logout()">Cerrar sesión actual</button>
+          </div>
+          <div class="modal-header border-0 pt-0 justify-content-center">
+            <p id="mensaje" class="text-warning small mb-2"></p>
+          </div>
+        </div>
+      </div>
+    </div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
-
-  </body>
+</body>
 </html>
