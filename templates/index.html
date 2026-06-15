@@ -57,7 +57,9 @@
                     <div class="card-body p-4">
                         <div class="fs-1 text-primary mb-2"><i class="bi bi-award"></i></div>
                         <h5 class="card-title text-muted mb-1">Programas Activos</h5>
-                        <h2 class="display-6 fw-bold text-dark">8 Becas</h2>
+                        <h2 class="display-6 fw-bold text-dark">
+                            {{ total_becas if total_becas is not none else 0 }} {{ 'Beca' if total_becas == 1 else 'Becas' }}
+                        </h2>
                     </div>
                 </div>
             </div>

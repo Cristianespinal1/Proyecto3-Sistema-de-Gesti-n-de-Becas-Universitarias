@@ -18,7 +18,21 @@ app.config['MYSQL_DB'] = "gestionbecas_db"
 #------------------------Paginas HTML------------------
 @app.route('/')
 def inicio():
-    return render_template("index.html") 
+    
+    # 1. Creamos el cursor para conectar con MySQL
+    cursor = mysql.connection.cursor()
+    
+    # 2. Ejecutamos la consulta para contar el total de becas
+    cursor.execute("SELECT COUNT(*) FROM Becas")
+    
+    # 3. Obtenemos el resultado (un solo número)
+    total_becas = cursor.fetchone()[0]
+    
+    # 4. Cerramos el cursor
+    cursor.close()
+    
+    # 5. Pasamos la variable 'total_becas' al HTML usando render_template
+    return render_template('index.html', total_becas=total_becas)
 @app.route('/becas_html')
 def becas_html():
     return render_template("becas.html") 
@@ -464,3 +478,4 @@ def matchmaker_becas():
 # ESTO DEBE SER SIEMPRE EL FINAL ABSOLUTO DEL ARCHIVO
 if __name__ == '__main__':
     app.run(debug=True)
+
