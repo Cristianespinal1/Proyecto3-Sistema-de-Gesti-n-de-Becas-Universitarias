@@ -1,4 +1,4 @@
-# 🎓 Sistema de Gestión de Becas Universitarias
+# Sistema de Gestión de Becas Universitarias
 
 Este proyecto es una aplicación web desarrollada para centralizar, administrar y auditar las postulaciones a los diferentes programas de estímulos y becas de la universidad. Resuelve la problemática de la información dispersa unificando el control de alumnos, requisitos documentales y el estado de las solicitudes en tiempo real.
 
@@ -10,7 +10,7 @@ Integrantes
      Samuel Walter Mamani Tarquino    N°Lista: 72
 ---
 
-## 🚀 Características Principales
+## Características Principales
 - **Dashboard Estadístico:** Indicadores dinámicos en el inicio conectados a la base de datos (conteo de becas activas).
 - **Control de Alumnos:** Administración del padrón, seguimiento de carreras y validación de promedios acumulados.
 - **Módulo de Postulaciones:** Flujo de aprobación, rechazo o evaluación pendiente de solicitudes.
@@ -19,21 +19,21 @@ Integrantes
 
 ---
 
-## 🛠️ Tecnologías Utilizadas
+## Tecnologías Utilizadas
 - **Backend:** Python 3.x con Flask (Arquitectura limpia y manejo de rutas)
 - **Frontend:** HTML5, CSS3, JavaScript (AJAX para modales) y Bootstrap 5 (Diseño Responsivo)
 - **Base de Datos:** MySQL (Estructura relacional mediante llaves foráneas)
 
 ---
 
-## 📦 Requisitos Previos
+## Requisitos Previos
 Antes de iniciar, asegúrate de tener instalado en tu equipo:
 - [Python 3.10 o superior](https://www.python.org/)
 - [MySQL Server](https://dev.mysql.com/downloads/installer/) o un entorno local como XAMPP / WampServer.
 
 ---
 
-## 💻 Guía de Instalación y Despliegue (Paso a Paso)
+## Guía de Instalación y Despliegue (Paso a Paso)
 
 Sigue este orden en tu terminal o línea de comandos para poner en marcha el sistema:
 
