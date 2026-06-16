@@ -41,19 +41,25 @@ Sigue este orden en tu terminal o línea de comandos para poner en marcha el sis
 Ejecuta estos comandos para descargar el proyecto en tu máquina y situarte dentro de su directorio:
 
 git clone https://github.com/Cristianespinal1/Proyecto3-Sistema-de-Gesti-n-de-Becas-Universitarias
+
 cd Proyecto3-Sistema-de-Gesti-n-de-Becas-Universitarias
 
 ### Paso 2: Crear y activar el Entorno Virtual
 python -m venv venv
+
 .\venv\Scripts\activate
 
 ### Paso 3: Instalar las dependencias del proyecto
+
 pip install -r requirements.txt
 
 ### Paso 4: Ejecutar el servidor de desarrollo
+
 python app.py
 
 
 Credenciales de Acceso
+
 Usuario: admin
+
 Contraseña: 123
